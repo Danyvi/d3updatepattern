@@ -3,7 +3,8 @@ import { fruitBowl } from './fruitBowl.js';
 const svg = d3.select('svg');
 
 const makeFruit = type => ({
-  type
+  type,
+  id: Math.random()
 });
 
 let fruits = d3
