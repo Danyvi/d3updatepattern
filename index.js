@@ -2,9 +2,12 @@ import { fruitBowl } from './fruitBowl.js';
 
 const svg = d3.select('svg');
 
-const makeFruit = type => ({type});
+const makeFruit = type => ({
+  type,
+  id: Math.random()
+});
 
-const fruits = d3
+let fruits = d3
 .range(5)
 .map(() => makeFruit('apple'));
 
@@ -26,6 +29,11 @@ setTimeout(()=>{
 // Replacing an Apple with a Lemon
 setTimeout(()=>{
   fruits[2].type='lemon';
-  console.log('updated with lemon: ',fruits);
   render();
 }, 2000);
+
+// Eat an Apple
+setTimeout(()=>{
+  fruits = fruits.filter( (d,i) => i !== 1); // removing everything that doesn't have index 1 (the second element)
+  render();
+}, 3000);
