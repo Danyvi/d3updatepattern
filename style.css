@@ -1,0 +1,10 @@
+body {
+  margin: 0px;
+  overflow: hidden;
+}
+
+text {
+  font-size: 3em;
+  text-anchor: middle;
+  font-family: sans-serif;
+}
