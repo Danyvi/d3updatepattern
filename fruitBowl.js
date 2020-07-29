@@ -10,22 +10,26 @@ const radiusScale = d3.scaleOrdinal()
 // { fruits } (destructures whatever comes in as fruits)
 export const fruitBowl = (selection, props) => {
   const { fruits, height } = props;
-  // the circles variable is the data join itself 
-  const circles = selection.selectAll('circle')
+
+  const groups = selection.selectAll('g')
     .data(fruits);
 
-  circles
-    .enter()
-      .append('circle')
-      .attr('cx', (d,i) => i * 180 + 100)
-      .attr('cy', (d,i) => height/2)
-    .merge(circles)
+  const groupsEnter = groups
+      .enter()
+        .append('g');
+
+  groupsEnter
+      .merge(groups)
+        .attr('transform', (d,i) => `translate(${i * 180 + 100}, ${height/2})`)
+    groups
+      .exit()
+      .remove();
+
+  groupsEnter
+    .append('circle')
+    .merge(groups.select('circle'))
       .attr('r', d => radiusScale(d.type))
       .attr('fill', d => colorScale(d.type));
-
-  circles
-    .exit()
-    .remove();
 
   // text label logic without nesting
   const text = selection.selectAll('text')
