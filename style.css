@@ -8,3 +8,7 @@ text {
   text-anchor: middle;
   font-family: sans-serif;
 }
+
+rect {
+  fill: #e5ddbc;
+}

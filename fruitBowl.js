@@ -11,6 +11,15 @@ const radiusScale = d3.scaleOrdinal()
 export const fruitBowl = (selection, props) => {
   const { fruits, height } = props;
 
+  const bowl = selection.selectAll('rect')
+    .data([null])
+    .enter()
+      .append('rect')
+      .attr('y', 100)
+      .attr('width', 920)
+      .attr('height', 300)
+      .attr('rx', 300/2);
+
   const groups = selection.selectAll('g')
     .data(fruits);
 
