@@ -31,19 +31,10 @@ export const fruitBowl = (selection, props) => {
       .attr('r', d => radiusScale(d.type))
       .attr('fill', d => colorScale(d.type));
 
-  // text label logic without nesting
-  const text = selection.selectAll('text')
-    .data(fruits);
+  groupsEnter
+    .append('text')
+    .merge(groups.select('text'))
+      .text(d => d.type)
+      .attr('y', 120);
 
-  text
-    .enter()
-      .append('text')
-      .attr('x', (d,i) => i * 180 + 100)
-      .attr('y', (d,i) => height/2 + 120)
-    .merge(text)
-      .text(d => d.type);
-
-  text
-    .exit()
-    .remove();
 }
